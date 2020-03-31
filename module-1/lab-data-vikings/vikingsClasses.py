@@ -21,11 +21,13 @@ class Soldier:
 
 class Viking(Soldier):
     def __init__(self, name, health, strength):
-        self.name = name
+        #self.name = name
         super().__init__(health, strength)
-    
+        self.name = name #CORRECCIÓN: Primero los atributos heredados, luego los propios, por si hay que sobreescribir alguno
+
     def receiveDamage(self, damage):
-        self.health -= damage
+        #self.health -= damage
+        super().receiveDamage(damage) #CORRECCIÓN: Aunque cambiemos una función heredada, aún se puede usar la función padre
         if self.health < 1:
             return f"{self.name} has died in act of combat"
         else:
@@ -39,11 +41,12 @@ class Viking(Soldier):
 
 
 class Saxon(Soldier):
-    def __init__(self, health, strength):
-        super().__init__(health, strength)
+    #def __init__(self, health, strength):
+    #    super().__init__(health, strength) #CORRECCIÓN: No hay que iniciar saxon porque es igual que la clase padre 
     
     def receiveDamage(self, damage):
-        self.health -= damage
+    #    self.health -= damage
+        super().receiveDamage(damage) #CORRECCIÓN: Igual que en la clase vikings
         if self.health < 1:
             return f"A Saxon has died in combat"
         else:
